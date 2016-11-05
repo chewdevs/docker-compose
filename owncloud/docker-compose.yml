@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  database:
+    image: mariadb:latest
+    volumes: 
+      - /var/lib/mysql
+    ports:
+      - 127.0.0.1:3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: a4f3v2QvREp2llnD6y8x
+
+  owncloud:
+    image: owncloud:latest
+    volumes:
+      - /data/owncloud/apps:/var/www/html/apps 
+      - /data/owncloud/config:/var/www/html/config 
+      - /data/owncloud/data:/var/www/html/data
+    links:
+      - database:mysql
+    restart: always
+    depends_on:
+       - database
+
+  rp:
+    image: nginx
+    volumes:
+      - /data/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf 
+      - /etc/letsencrypt/live/cloud.chews.fr/fullchain.pem:/etc/nginx/fullchain.pem
+      - /etc/letsencrypt/live/cloud.chews.fr/privkey.pem:/etc/nginx/privkey.pem
+    links:
+      - owncloud
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - owncloud
