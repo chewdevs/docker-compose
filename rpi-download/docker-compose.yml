@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  sickrage:
+    image: sickrage
+    volumes: 
+      - data:/data
+      - /mnt/nfs:/mnt/nfs
+    ports:
+      - 8081:8081
+    restart: always
+
+  couchpotato:
+    image: couchpotato
+    volumes: 
+      - data:/data
+      - /mnt/nfs:/mnt/nfs
+    ports:
+      - 5050:5050
+    restart: always
+
+  nzbget:
+    image: nzbget
+    volumes: 
+      - data:/data
+    ports:
+      - 6789:6789
+    restart: always
+
+  transmission:
+    image: transmission
+    volumes: 
+      - data:/data
+      - transmission-etc:/etc/transmission-daemon
+    ports:
+      - 9091:9091
+    restart: always
+
+volumes:
+  data:
+  transmission-etc:
