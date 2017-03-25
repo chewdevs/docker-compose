@@ -5,6 +5,7 @@ services:
     image: chewy85500/rpi-sickrage
     volumes: 
       - data:/data
+      - sickrage-data:/opt/Sickrage
       - /mnt/nfs:/mnt/nfs
     ports:
       - 8081:8081
@@ -43,3 +44,4 @@ services:
 volumes:
   data:
   transmission-etc:
+  sickrage-data:
