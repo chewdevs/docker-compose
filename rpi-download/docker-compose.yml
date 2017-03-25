@@ -2,7 +2,7 @@ version: '2'
 
 services:
   sickrage:
-    image: sickrage
+    image: chewy85500/rpi-sickrage
     volumes: 
       - data:/data
       - /mnt/nfs:/mnt/nfs
@@ -11,7 +11,7 @@ services:
     restart: always
 
   couchpotato:
-    image: couchpotato
+    image: chewy85500/rpi-couchpotato
     volumes: 
       - data:/data
       - /mnt/nfs:/mnt/nfs
@@ -20,7 +20,7 @@ services:
     restart: always
 
   nzbget:
-    image: nzbget
+    image: chewy85500/rpi-nzbget
     volumes: 
       - data:/data
     ports:
@@ -28,7 +28,7 @@ services:
     restart: always
 
   transmission:
-    image: transmission
+    image: chewy85500/rpi-transmission
     volumes: 
       - data:/data
       - transmission-etc:/etc/transmission-daemon
