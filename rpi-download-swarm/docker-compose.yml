@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  sickrage:
+    image: chewy85500/rpi-sickrage
+    volumes:
+      - /storage/data:/data
+      - sickrage-data:/opt/Sickrage
+      - /mnt/nfs:/mnt/nfs
+    ports:
+      - 8081:8081
+    deploy:
+      replicas: 1
+
+  couchpotato:
+    image: chewy85500/rpi-couchpotato
+    volumes:
+      - /storage/data:/data
+      - /mnt/nfs:/mnt/nfs
+    ports:
+      - 5050:5050
+    deploy:
+      replicas: 1
+
+  nzbget:
+    image: chewy85500/rpi-nzbget
+    volumes:
+      - /storage/data:/data
+    ports:
+      - 6789:6789
+    deploy:
+      replicas: 1
+
+  transmission:
+    image: chewy85500/rpi-transmission
+    volumes:
+      - /storage/data:/data
+      - transmission-etc:/etc/transmission-daemon
+    ports:
+      - 9091:9091
+    deploy:
+      replicas: 1
+
+volumes:
+  transmission-etc:
+  sickrage-data:
