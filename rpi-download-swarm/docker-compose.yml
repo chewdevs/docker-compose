@@ -8,10 +8,7 @@ services:
       - sickrage-data:/opt/Sickrage
       - /mnt/nfs:/mnt/nfs
     ports:
-      - target: 8081
-        published: 8081
-        protocol: tcp
-        mode: ingress
+      - 8081:8081
     deploy:
       replicas: 1
 
@@ -21,10 +18,7 @@ services:
       - /storage/data:/data
       - /mnt/nfs:/mnt/nfs
     ports:
-      - target: 5050
-        published: 5050
-        protocol: tcp
-        mode: ingress
+      - 5050:5050
     deploy:
       replicas: 1
 
@@ -33,10 +27,7 @@ services:
     volumes:
       - /storage/data:/data
     ports:
-      - target: 6789
-        published: 6789
-        protocol: tcp
-        mode: ingress
+      - 6789:6789
     deploy:
       replicas: 1
 
@@ -46,10 +37,7 @@ services:
       - /storage/data:/data
       - transmission-etc:/etc/transmission-daemon
     ports:
-      - target: 9091
-        published: 9091
-        protocol: tcp
-        mode: ingress
+      - 9091:9091
     deploy:
       replicas: 1
 
