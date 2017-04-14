@@ -9,6 +9,7 @@ services:
       - /mnt/nfs:/mnt/nfs
     ports:
       - 8081:8081
+    restart: always
 
   couchpotato:
     image: chewy85500/rpi-couchpotato
@@ -17,6 +18,7 @@ services:
       - /mnt/nfs:/mnt/nfs
     ports:
       - 5050:5050
+    restart: always
 
   nzbget:
     image: chewy85500/rpi-nzbget
@@ -24,6 +26,7 @@ services:
       - data:/data
     ports:
       - 6789:6789
+    restart: always
 
   transmission:
     image: chewy85500/rpi-transmission
@@ -32,6 +35,7 @@ services:
       - transmission-etc:/etc/transmission-daemon
     ports:
       - 9091:9091
+    restart: always
 
 volumes:
   data:
