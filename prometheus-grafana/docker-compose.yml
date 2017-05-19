@@ -9,29 +9,16 @@ services:
       - 9090:9090
     restart: always
 
+  node_exporter:
+    image: prom/node_exporter
+    port:
+      - 9100:9100
 
-  # owncloud:
-  #   image: owncloud:latest
-  #   volumes:
-  #     - /data/owncloud/apps:/var/www/html/apps
-  #     - /data/owncloud/config:/var/www/html/config
-  #     - /data/owncloud/data:/var/www/html/data
-  #   links:
-  #     - database:mysql
-  #   restart: always
-  #   depends_on:
-  #      - database
-  #
-  # rp:
-  #   image: nginx
-  #   volumes:
-  #     - /data/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf
-  #     - /etc/letsencrypt/live/cloud.chews.fr/fullchain.pem:/etc/nginx/fullchain.pem
-  #     - /etc/letsencrypt/live/cloud.chews.fr/privkey.pem:/etc/nginx/privkey.pem
-  #   links:
-  #     - owncloud
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   depends_on:
-  #     - owncloud
+  grafana:
+    image: grafana/grafana
+      environment:
+        - GF_SECURITY_ADMIN_PASSWORD=263YgpIvz7Rc6WD3fRYc
+      depends_on:
+        - prometheus
+      ports:
+        - 3000:3000
