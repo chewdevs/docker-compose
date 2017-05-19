@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ~/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    restart: always
+
+
+  # owncloud:
+  #   image: owncloud:latest
+  #   volumes:
+  #     - /data/owncloud/apps:/var/www/html/apps
+  #     - /data/owncloud/config:/var/www/html/config
+  #     - /data/owncloud/data:/var/www/html/data
+  #   links:
+  #     - database:mysql
+  #   restart: always
+  #   depends_on:
+  #      - database
+  #
+  # rp:
+  #   image: nginx
+  #   volumes:
+  #     - /data/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf
+  #     - /etc/letsencrypt/live/cloud.chews.fr/fullchain.pem:/etc/nginx/fullchain.pem
+  #     - /etc/letsencrypt/live/cloud.chews.fr/privkey.pem:/etc/nginx/privkey.pem
+  #   links:
+  #     - owncloud
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   depends_on:
+  #     - owncloud
