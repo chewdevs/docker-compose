@@ -16,9 +16,9 @@ services:
 
   grafana:
     image: grafana/grafana
-      environment:
-        - GF_SECURITY_ADMIN_PASSWORD=263YgpIvz7Rc6WD3fRYc
-      depends_on:
-        - prometheus
-      ports:
-        - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=263YgpIvz7Rc6WD3fRYc
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
