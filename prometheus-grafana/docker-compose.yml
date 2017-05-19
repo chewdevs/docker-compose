@@ -11,7 +11,7 @@ services:
 
   node_exporter:
     image: prom/node_exporter
-    port:
+    ports:
       - 9100:9100
 
   grafana:
